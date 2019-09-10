@@ -132,7 +132,7 @@ class ForwardList : public List<T> {
         }
 
 	    ForwardIterator<T> end() {
-            ForwardIterator<T> itr(this->tail);
+            ForwardIterator<T> itr(this->tail->next);
             return itr;
         }
 
