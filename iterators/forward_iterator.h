@@ -10,19 +10,20 @@ class ForwardIterator : public Iterator<T> {
         ForwardIterator(Node<T> *node) : Iterator<T>(node) {};
 
         ForwardIterator<T> operator=(ForwardIterator<T> other) {
-            // TODO
+            return (*this);
         }
 
         bool operator!=(ForwardIterator<T> other) {
-            // TODO
+            return this->current!=other.current;
         }
 
         ForwardIterator<T> operator++() {
-            // TODO
+            this->current=this->current->next;
+            return (*this);
         }
 
         T operator*() {
-            // TODO
+            return this->current->data;
         }
 };
 

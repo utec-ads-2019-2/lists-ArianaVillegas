@@ -10,51 +10,116 @@ class ForwardList : public List<T> {
         ForwardList() : List<T>() {}
 
         T front() {
-            // TODO
+            return this->head->data;
         }
 
         T back() {
-            // TODO
+            return this->tail->data;
         }
 
         void push_front(T value) {
-            // TODO
+            Node<T>* node=new Node<T>;
+            node->data=value;
+            if(this->nodes)
+                node->next=this->head;
+            else
+                this->tail=node;
+            this->head=node;
+            ++this->nodes;
         }
 
         void push_back(T value) {
-            // TODO
+            Node<T>* node=new Node<T>;
+            node->data=value;
+            if(this->nodes)
+                this->tail->next=node;
+            else
+                this->head=node;
+            this->tail=node;
+            ++this->nodes;
         }
 
         void pop_front() {
-            // TODO
+            if(this->nodes){
+                Node<T>* node=this->head->next;
+                delete this->head;
+                this->head=nullptr;
+                if(this->nodes==1){
+                    this->tail=nullptr;
+                }else{
+                    this->head=node;
+                }
+                --this->nodes;
+            }
         }
 
         void pop_back() {
-            // TODO
+            if(this->nodes){
+                Node<T>* node=this->head;
+                int size=this->nodes-1;
+                for(int i=1; i<size; ++i){
+                    node=node->next;
+                }
+                delete this->tail;
+                if(this->nodes==1){
+                    this->head=nullptr;
+                }else{
+                    this->tail=node;
+                }
+                --this->nodes;
+            }
         }
 
         T operator[](int index) {
-            // TODO
+            int size=this->nodes;
+            if(size>index){
+                Node<T>* node=this->head;
+                for(int i=0; i<index; ++i){
+                    node=node->next;
+                }
+                return node->data;
+            } else {
+                cout << "Index fuera de rango\n";
+            }
         }
 
         bool empty() {
-            // TODO
+            return !(this->nodes);
         }
 
         int size() {
-            // TODO
+            return this->nodes;
         }
 
         void clear() {
-            // TODO
+            this->head->killSelf(nullptr);
+            this->head=nullptr;
+            this->tail=nullptr;
+            this->nodes=0;
         }
 
         void sort() {
-            // TODO
+            int size=this->nodes;
+            T arr[size];
+            Node<T>* node=this->head;
+            for(int i=0; i<size; ++i){
+                arr[i]=node->data;
+                node=node->next;
+            }
+            sortArray(arr,0,size);
+            node=this->head;
+            for(int i=0; i<size; ++i){
+                node->data=arr[i];
+                node=node->next;
+            }
         }
     
         void reverse() {
-            // TODO
+            if(this->nodes){
+                this->head->reverseF(nullptr);
+                swap(this->head,this->tail);
+            }
+            this->tail->next=nullptr;
         }
 
         string name() {
@@ -62,15 +127,31 @@ class ForwardList : public List<T> {
         }
 
         ForwardIterator<T> begin() {
-            // TODO
+            ForwardIterator<T> itr(this->head);
+            return itr;
         }
 
 	    ForwardIterator<T> end() {
-            // TODO
+            ForwardIterator<T> itr(this->tail);
+            return itr;
         }
 
         void merge(ForwardList<T> list) {
-            // TODO
+            if(this->nodes){
+                this->tail->next=list.head;
+            }else{
+                this->head=list.head;
+            }
+            this->tail=list.tail;
+            this->nodes+=list.nodes;
+
+            //Si queremos que cada lista se mantenga independiente
+            /*
+            Node<T>* node=list.head;
+            while(node!=nullptr){
+                push_back(node->data);
+                node=node->next;
+            }*/
         }
 };
 
