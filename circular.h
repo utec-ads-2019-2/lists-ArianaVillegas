@@ -150,7 +150,7 @@ class CircularLinkedList : public List<T> {
         }
 
 	    BidirectionalIterator<T> end() {
-            BidirectionalIterator<T> itr(this->tail->next);
+            BidirectionalIterator<T> itr(this->head);
             return itr;
         }
 
