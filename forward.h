@@ -148,7 +148,7 @@ class ForwardList : public List<T> {
             //Si queremos que cada lista se mantenga independiente
             /*
             Node<T>* node=list.head;
-            while(node!=nullptr){
+            while(node){
                 push_back(node->data);
                 node=node->next;
             }*/
