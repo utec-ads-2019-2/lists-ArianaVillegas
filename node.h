@@ -8,22 +8,22 @@ struct Node {
     Node<T>* prev;
 
     void killSelf(Node<T>* node) {
-        if(this->next!=node)
-            this->next->killSelf(node);
+        if(next!=node)
+            next->killSelf(node);
         delete this;
     }
 
     void reverseF(Node<T>* node){
-        if(this->next->next!=node)
-            this->next->reverseF(node);
-        this->next->next=this;
+        if(next->next!=node)
+            next->reverseF(node);
+        next->next=this;
     }
 
     void reverseL(Node<T>* node){
-        if(this->next!=node){
-            this->next->reverseL(node);
+        if(next!=node){
+            next->reverseL(node);
         }
-        swap(this->prev,this->next);
+        swap(prev,next);
     }
 
 
