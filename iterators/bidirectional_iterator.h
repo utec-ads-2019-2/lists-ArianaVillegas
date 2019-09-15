@@ -10,6 +10,7 @@ class BidirectionalIterator : public Iterator<T> {
         BidirectionalIterator(Node<T> *node) : Iterator<T>(node) {};
 
         BidirectionalIterator<T> operator=(BidirectionalIterator<T> other) {
+            // Falta igualar los punteros
             return (*this);
         }
 
@@ -18,14 +19,17 @@ class BidirectionalIterator : public Iterator<T> {
         }
 
         BidirectionalIterator<T> operator++() {
+            // Falta retornar el iterator
             this->current=this->current->next;
         }
 
         BidirectionalIterator<T> operator--() {
+            // Falta retornar el iterator
             this->current=this->current->prev;
         }
 
         T operator*() {
+            // Falta controlar el caso vacío
             return this->current->data;
         }
 };

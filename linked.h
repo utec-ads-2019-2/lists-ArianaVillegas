@@ -10,10 +10,12 @@ class LinkedList : public List<T> {
         LinkedList() : List<T>() {}
 
         T front() {
+            // Falta controlar el caso vacío
             return this->head->data;
         }
 
         T back() {
+            // Falta controlar el caso vacío
             return this->tail->data;
         }
 

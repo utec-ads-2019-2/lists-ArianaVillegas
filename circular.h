@@ -9,16 +9,19 @@ class CircularLinkedList : public List<T> {
         CircularLinkedList() : List<T>() {}
 
         T front() {
+            // Falta controlar el caso vacío
             return this->head->data;
         }
 
         T back() {
+            // Falta controlar el caso vacío
             return this->tail->data;
         }
 
         void push_front(T value) {
             Node<T>* node=new Node<T>;
             node->data=value;
+            // Sería mejor trabajar con head en vez de nodes
             if(this->nodes) {
                 node->next = this->head;
                 node->prev = this->tail;
@@ -83,6 +86,7 @@ class CircularLinkedList : public List<T> {
         }
 
         T operator[](int index) {
+            // Algunos pasos de más
             int size=this->nodes;
             index=index%size;
             if(size>index){

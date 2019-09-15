@@ -10,10 +10,12 @@ class ForwardList : public List<T> {
         ForwardList() : List<T>() {}
 
         T front() {
+            // // Falta controlar el caso vacío
             return this->head->data;
         }
 
         T back() {
+            // Falta controlar el caso vacío
             return this->tail->data;
         }
 
@@ -71,6 +73,7 @@ class ForwardList : public List<T> {
         }
 
         T operator[](int index) {
+            // Faltaría controlar los casos negativos
             int size=this->nodes;
             if(size>index){
                 Node<T>* node=this->head;
